@@ -80,23 +80,31 @@ def espesor_pcs(th, e0=0.155, thin=(0.95, 2.05, 4.45), prof=0.62, ancho=0.30):
     return e0 * taper * dip
 
 
-def fig_corte_axial(path="fig1_corte_axial.png", a=1.0):
+def fig_corte_axial(path="fig1_corte_axial.png", a=1.0, pared=False):
+    """Corte axial del horn torus del Icc.
+
+    Ding es una superficie SIN espesor: el Pcs no ocupa una region de V, esta en
+    otro espacio que este modelo no representa (decision del 17/09). pared=True
+    reproduce el dibujo anterior, con la banda de espesor Pcs, sólo para cotejo.
+    """
     estilo()
     th = np.linspace(0, 2 * np.pi, 2000)
-    fig, ax = plt.subplots(figsize=(7.9, 4.8))
+    fig, ax = plt.subplots(figsize=(8.3, 5.0))
 
     for sg in (+1, -1):
         xi, yi = sg * a + a * np.cos(th), a * np.sin(th)
-        e = espesor_pcs(th) * a
-        xo, yo = sg * a + (a + e) * np.cos(th), (a + e) * np.sin(th)
-        ax.fill(np.r_[xi, xo[::-1]], np.r_[yi, yo[::-1]], color=COL["pared"], lw=0, zorder=1)
+        if pared:
+            e = espesor_pcs(th) * a
+            xo, yo = sg * a + (a + e) * np.cos(th), (a + e) * np.sin(th)
+            ax.fill(np.r_[xi, xo[::-1]], np.r_[yi, yo[::-1]], color=COL["pared"], lw=0, zorder=1)
         ax.add_patch(Circle((sg * a, 0), 0.999 * a, fc="white", ec="none", zorder=0))
-        ax.plot(xi, yi, color=COL["ding"], lw=1.9, zorder=4)
+        ax.plot(xi, yi, color=COL["ding"], lw=2.1, zorder=4)
 
     ax.plot([0, 0], [-1.5 * a, 1.5 * a], ls=(0, (6, 4)), lw=0.8, color="#b0bec5", zorder=0)
     ax.text(0.06 * a, 1.46 * a, "eje de rotación", color=COL["gris"], fontsize=7,
             va="top", rotation=90)
 
+    # --- las marcas, sobre la cara interna del lóbulo derecho (con su espejo) ---
     rin = 0.93 * a
     marcas = [("S", 1.05, COL["S"], "o", 5.6),
               ("hilo pulsional", 0.66, COL["puls"], "o", 4.2),
@@ -107,44 +115,48 @@ def fig_corte_axial(path="fig1_corte_axial.png", a=1.0):
     for nom, t0, col, mk, ms in marcas:
         x, y = a + rin * np.cos(t0), rin * np.sin(t0)
         ax.plot(x, y, mk, ms=ms, mfc=col, mec="white", mew=0.7, zorder=7)
-        ax.annotate(nom, xy=(x, y), xytext=(a + 1.52 * a * np.cos(t0), 1.52 * a * np.sin(t0)),
+        rl = 1.78 * a if nom == "núcleo fantasmático" else 1.55 * a
+        ax.annotate(nom, xy=(x, y), xytext=(a + rl * np.cos(t0), rl * np.sin(t0)),
                     color=col, fontsize=8, ha="left", va="center",
                     arrowprops=dict(arrowstyle="-", lw=0.7, color=col, alpha=0.55,
                                     shrinkA=1, shrinkB=2))
-    for nom, t0, col, mk, ms in marcas:          # mismo tubo, cortado dos veces
         t = np.pi - t0
         ax.plot(-a + rin * np.cos(t), rin * np.sin(t), mk, ms=ms * 0.82, mfc=col,
                 mec="white", mew=0.6, alpha=0.75, zorder=7)
 
+    # --- las tres vías variables: puntos de la superficie, no adelgazamientos ---
+    for nom, t0 in (("palabra", 2.42), ("agieren", 3.14), ("sublimación", 3.86)):
+        x, y = -a + a * np.cos(t0), a * np.sin(t0)
+        ax.plot(x, y, "o", ms=5.2, mfc="white", mec="#37474f", mew=1.3, zorder=8)
+        ax.annotate(nom, xy=(x, y), xytext=(-a + 1.62 * a * np.cos(t0), 1.62 * a * np.sin(t0)),
+                    color="#37474f", fontsize=8, ha="right", va="center",
+                    arrowprops=dict(arrowstyle="-", lw=0.7, color="#607d8b", alpha=0.6,
+                                    shrinkA=1, shrinkB=3))
+
     ax.plot(0, 0, "o", ms=7.5, mfc="white", mec=COL["voz"], mew=1.9, zorder=9)
-    ax.annotate("punto de autotangencia\nla voz — único agujero fijo", xy=(0, 0),
-                xytext=(0, -1.44 * a), color=COL["voz"], fontsize=8, ha="center", va="top",
+    ax.annotate("punto de autotangencia\nla voz del superyó — único agujero fijo", xy=(0, 0),
+                xytext=(0, -1.52 * a), color=COL["voz"], fontsize=8, ha="center", va="top",
                 arrowprops=dict(arrowstyle="-", lw=0.8, color=COL["voz"], shrinkA=0, shrinkB=4))
 
-    for t0, txt in [(np.pi, "pared: espesor Pcs\n(se anula en la autotangencia)"),
-                    (2.05, "adelgazamiento local\npalabra · agieren · sublimación")]:
-        x, y = -a + a * np.cos(t0), a * np.sin(t0)
-        ax.annotate(txt, xy=(x, y),
-                    xytext=(-a + 1.60 * a * np.cos(t0), 1.60 * a * np.sin(t0)),
-                    color="#546e7a", fontsize=8, ha="right", va="center",
-                    arrowprops=dict(arrowstyle="-", lw=0.7, color="#546e7a", alpha=0.55,
-                                    shrinkA=1, shrinkB=2))
-    ax.text(-a, -0.05 * a, "interior de V\nvacío", ha="center", va="center",
-            fontsize=8, color="#b0bec5")
-    ax.text(-2.86 * a, -1.52 * a, "afuera: Cc (sin nombrar)", ha="left", va="bottom",
-            fontsize=8, color=COL["gris"])
+    ax.annotate("Ding: superficie sin espesor", xy=(-a + a * np.cos(1.35), a * np.sin(1.35)),
+                xytext=(-1.55 * a, 1.52 * a), color=COL["ding"], fontsize=8,
+                ha="center", va="bottom",
+                arrowprops=dict(arrowstyle="-", lw=0.7, color=COL["ding"], shrinkB=3))
+    ax.text(-a, 0.04 * a, "V = el Icc\n(interior vacío)", ha="center", va="center",
+            fontsize=8.5, color="#90a4ae", linespacing=1.4)
+    ax.text(a, -0.62 * a, "zeitlos", ha="center", va="center", fontsize=8, color="#b0bec5")
+    ax.text(-3.24 * a, -1.46 * a, "afuera: otro espacio — el Pcs y la Cc no están\n"
+                                  "en V y este modelo no los representa",
+            ha="left", va="bottom", fontsize=8, color="#607d8b", linespacing=1.4)
 
-    ax.set_title("Corte axial del horn torus del Icc: dos círculos iguales, tangentes en un solo punto",
-                 loc="left")
-    ax.set_xlim(-2.90 * a, 2.95 * a); ax.set_ylim(-1.78 * a, 1.62 * a)
+    ax.set_title("Corte axial del horn torus del Icc: dos círculos iguales, "
+                 "tangentes en un solo punto", loc="left")
+    ax.set_xlim(-3.30 * a, 3.05 * a); ax.set_ylim(-1.92 * a, 1.66 * a)
     ax.set_aspect("equal"); ax.axis("off")
     fig.tight_layout(); fig.savefig(path, bbox_inches="tight")
     return fig
 
 
-# ----------------------------------------------------------------------
-# Figura 2 — la cinta S-I-Σ sobre la cara interna (§4), en 3D
-# ----------------------------------------------------------------------
 def cinta_conforme(M, u, rho_frac=0.93, banda=(0.45, 2.70), m=3.0, ancho_I=0.075):
     """Trenza S-I-Σ + hilo pulsional distribuida sobre la cara interna.
 
@@ -411,71 +423,67 @@ def fig_cinta_3d(path="fig2_cinta_cara_interna.png", M=None, hueco_deg=52):
 # Figura 3 — las cuatro vías de salida (§5) y el tiempo en el cruce (§9)
 # ----------------------------------------------------------------------
 def fig_vias_salida(path="fig3_vias_de_salida.png", a=1.0):
+    """Las cuatro vías de salida, sin pared: la condición de pasaje está en la marca."""
     estilo()
     th = np.linspace(0, 2 * np.pi, 1600)
-    thin = (0.95, 2.05, 4.45)
-    fig, ax = plt.subplots(figsize=(7.7, 5.0))
+    fig, ax = plt.subplots(figsize=(8.2, 5.4))
 
-    e = espesor_pcs(th, thin=thin) * a
-    xi, yi = a + a * np.cos(th), a * np.sin(th)
-    xo, yo = a + (a + e) * np.cos(th), (a + e) * np.sin(th)
-    ax.fill(np.r_[xi, xo[::-1]], np.r_[yi, yo[::-1]], color=COL["pared"], lw=0, zorder=2)
-    ax.add_patch(Circle((a, 0), 0.999 * a, fc="white", ec="none", zorder=1))
-    ax.plot(xi, yi, color=COL["ding"], lw=1.9, zorder=4)
+    ax.add_patch(Circle((a, 0), 0.999 * a, fc="#fbfcfc", ec="none", zorder=0))
+    ax.plot(a + a * np.cos(th), a * np.sin(th), color=COL["ding"], lw=2.1, zorder=4)
     ax.plot([0, 0], [-1.42 * a, 1.42 * a], ls=(0, (6, 4)), lw=0.8, color="#cfd8dc", zorder=0)
 
-    # las tres vías variables: flecha que cruza el adelgazamiento
-    vias = [(thin[0], "palabra — deformada", "sueño, lapsus, acto fallido (Entstellung);\n"
-                                             "exige marca ligada a una Wortvorstellung", COL["S"]),
-            (thin[1], "agieren", "cuando la vía representacional está bloqueada:\n"
-                                 "se actúa en vez de recordarse", COL["Sigma"]),
-            (thin[2], "sublimación", "el fin se desplaza sin distorsión:\n"
-                                     "no hay nada que disfrazar al cruzar", COL["I"])]
-    for t0, nom, glosa, col in vias:
-        ew = float(espesor_pcs(np.array([t0]), thin=thin)[0]) * a
-        n = np.array([np.cos(t0), np.sin(t0)])
-        p0 = np.array([a, 0]) + (0.72 * a) * n
-        p1 = np.array([a, 0]) + (a + ew + 0.30 * a) * n
-        ax.annotate("", xy=tuple(p1), xytext=tuple(p0), zorder=6,
-                    arrowprops=dict(arrowstyle="-|>", lw=1.6, color=col,
-                                    shrinkA=0, shrinkB=0,
-                                    connectionstyle="arc3,rad=0.16"))
-        pt = np.array([a, 0]) + (a + ew + 0.42 * a) * n
-        ha = "left" if np.cos(t0) > -0.2 else "right"
-        ax.text(pt[0], pt[1], nom, color=col, fontsize=8.5, ha=ha, va="center",
-                fontweight="medium")
-        ax.text(pt[0], pt[1] - 0.17 * a, glosa, color="#546e7a", fontsize=7.2,
-                ha=ha, va="top", linespacing=1.35)
-        ax.plot(*(np.array([a, 0]) + (a + ew / 2) * n), marker="o", ms=3.4,
-                color="white", mec=col, mew=1.0, zorder=7)
+    vias = [(0.95, "palabra — deformada", COL["S"],
+             "sueño, lapsus, acto fallido (Entstellung);\nexige marca ligada a una Wortvorstellung"),
+            (2.05, "agieren", COL["Sigma"],
+             "cuando la vía representacional está bloqueada:\nse actúa en vez de recordarse"),
+            (4.55, "sublimación", COL["I"],
+             "el fin se desplaza sin distorsión:\nno hay nada que disfrazar al cruzar")]
+    for t0, nom, col, det in vias:
+        x, y = a + a * np.cos(t0), a * np.sin(t0)
+        nx, ny = np.cos(t0), np.sin(t0)
+        ax.plot(x, y, "o", ms=6.0, mfc="white", mec=col, mew=1.6, zorder=8)
+        ax.annotate("", xy=(x + 0.52 * a * nx, y + 0.52 * a * ny), xytext=(x - 0.20 * a * nx, y - 0.20 * a * ny),
+                    zorder=6, arrowprops=dict(arrowstyle="-|>", lw=1.7, color=col,
+                                              connectionstyle="arc3,rad=0.22"))
+        ha = "left" if nx > -0.2 else "right"
+        ax.text(x + 0.66 * a * nx, y + 0.66 * a * ny, nom, color=col, fontsize=8.6,
+                ha=ha, va="center", zorder=9)
+        ax.text(x + 0.66 * a * nx, y + 0.66 * a * ny - 0.19 * a, det, color="#546e7a",
+                fontsize=7.4, ha=ha, va="top", linespacing=1.35, zorder=9)
 
-    # la voz: el agujero fijo, espesor cero
-    ax.annotate("", xy=(-0.42 * a, -0.30 * a), xytext=(0.52 * a, -0.16 * a), zorder=6,
-                arrowprops=dict(arrowstyle="-|>", lw=1.9, color=COL["voz"],
-                                shrinkA=0, shrinkB=0, connectionstyle="arc3,rad=0.20"))
-    ax.plot(0, 0, "o", ms=7.5, mfc="white", mec=COL["voz"], mew=1.9, zorder=8)
-    ax.text(-0.50 * a, -0.40 * a, "la voz — fija", color=COL["voz"], fontsize=8.5,
+    ax.plot(0, 0, "o", ms=8.0, mfc="white", mec=COL["voz"], mew=2.0, zorder=9)
+    ax.annotate("", xy=(-0.60 * a, -0.16 * a), xytext=(0.04 * a, 0.0), zorder=6,
+                arrowprops=dict(arrowstyle="-|>", lw=1.8, color=COL["voz"],
+                                connectionstyle="arc3,rad=0.22"))
+    ax.text(-0.70 * a, -0.20 * a, "la voz del superyó — fija", color=COL["voz"], fontsize=8.6,
             ha="right", va="center")
-    ax.text(-0.50 * a, -0.57 * a, "espesor cero, siempre abierta;\n"
+    ax.text(-0.70 * a, -0.39 * a, "el punto singular de la superficie;\n"
                                   "no depende del estado económico", color="#546e7a",
-            fontsize=7.2, ha="right", va="top", linespacing=1.35)
+            fontsize=7.4, ha="right", va="top", linespacing=1.35)
 
-    ax.text(a, 0.10 * a, "Icc", ha="center", va="center", fontsize=10, color="#455a64")
-    ax.text(a, -0.10 * a, "zeitlos: las marcas no se fechan", ha="center", va="center",
-            fontsize=7.6, color=COL["gris"])
-    ax.text(-2.02 * a, -1.18 * a, "cada cruce es un borde de época mínimo:\n"
-                                  "ahí se produce la fecha, no adentro",
+    ax.text(a, 0.30 * a, "Icc", ha="center", va="center", fontsize=11, color="#455a64")
+    ax.text(a, 0.06 * a, "zeitlos: las marcas no se fechan", ha="center", va="center",
+            fontsize=8, color="#90a4ae")
+    ax.text(a, -0.26 * a, "V es todo Icc: el Pcs no está acá", ha="center", va="center",
+            fontsize=8, color="#90a4ae")
+
+    ax.text(-2.35 * a, 1.66 * a, "cada cruce es un borde de época mínimo:\n"
+                                 "ahí se produce la fecha, no adentro",
             ha="left", va="top", fontsize=8, color="#37474f", linespacing=1.4)
+    ax.text(-2.35 * a, -1.34 * a,
+            "las tres vías variables no son adelgazamientos de una pared:\n"
+            "Ding no tiene espesor. La condición de pasaje es una propiedad\n"
+            "de la MARCA, no del borde — el borde tiene una sola propiedad\n"
+            "estructural, su punto singular.",
+            ha="left", va="top", fontsize=8, color="#37474f", linespacing=1.45)
+
     ax.set_title("Las cuatro vías de salida del Icc: una fija, tres variables", loc="left")
-    ax.set_xlim(-2.05 * a, 2.70 * a); ax.set_ylim(-1.72 * a, 1.42 * a)
+    ax.set_xlim(-2.42 * a, 3.05 * a); ax.set_ylim(-2.26 * a, 1.74 * a)
     ax.set_aspect("equal"); ax.axis("off")
     fig.tight_layout(); fig.savefig(path, bbox_inches="tight")
     return fig
 
 
-# ----------------------------------------------------------------------
-# Figura 4 — el §16: toro sólido, Heegaard, y la hipótesis de no-anudamiento
-# ----------------------------------------------------------------------
 def _horn_par(ax, a=1.0, cx=0.0, cy=0.0, col=None, lw=1.6, pared=True):
     th = np.linspace(0, 2 * np.pi, 800)
     for sg in (+1, -1):
