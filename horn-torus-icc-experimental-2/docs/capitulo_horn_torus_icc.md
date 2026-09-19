@@ -48,7 +48,7 @@ Definir Ding como miembro de esta familia, y no como "un toro tame con el
 agujero llevado al mínimo", es la decisión que organiza toda la Parte II. La
 razón se da en el §6.
 
-![La familia r → R](../figures/fig5_familia_limite.png)
+![La familia r → R]({{artifact:art_308ed0a1-c881-403b-af34-f7de440776bc}})
 
 *Figura 1 — La familia en corte axial (a); la curva que se colapsa en el límite
 es una longitud (b); los invariantes, constantes en la familia, saltan sólo en
@@ -79,8 +79,8 @@ correcta es: *el horn torus es el límite de una familia de toros lisos de géne
 no es una variedad.*
 
 > **AXIOMA — la voz deja de postularse y pasa a derivarse.** En la versión
-> anterior, "el punto de autotangencia es una vía de salida fija, de espesor
-> topológico cero" era una propiedad que había que atribuirle al punto. En la
+> anterior, "el punto de autotangencia es una vía de salida fija y singular" era
+> una propiedad que había que atribuirle al punto. En la
 > familia es lo que el límite produce: el agujero tiene radio `R − r > 0` y se
 > cierra cuando `r → R`, pero **no se cierra como agujero** — degenera en el
 > único punto donde adentro y afuera se tocan.
@@ -104,7 +104,7 @@ circunferencias iguales de radio `r` centradas en `(±R, 0)`; con `r = R` son
 tangentes en el origen. Las marcas aparecen dos veces porque el plano corta **el
 mismo tubo dos veces**.
 
-![Corte axial](../figures/fig1_corte_axial.png)
+![Corte axial]({{artifact:art_71bc5e76-dd29-4a6c-80dc-d9672db09609}})
 
 *Figura 2 — Corte axial del horn torus del Icc.*
 
@@ -115,8 +115,8 @@ mismo tubo dos veces**.
 | La cinta S-I-Σ pegada a la cara interna | AXIOMA | §4 |
 | El hilo pulsional pegado al borde de I | AXIOMA con CITA de apoyo | Lacan, Sem. XI, p. 106 (*bord érogène*) funda el trayecto circular alrededor de un borde; que el borde sea el de I es aplicación propia |
 | Interior de `V` vacío | AXIOMA | §8, opción (A) |
-| Pared con espesor Pcs que se anula en la autotangencia | AXIOMA + PENDIENTE | ver §14 |
-| Adelgazamientos locales como vías variables | AXIOMA | §5 |
+| Ding no tiene espesor; el Pcs **no está en `V`** | AXIOMA | `V` es todo Icc; el Pcs está en otro espacio que este modelo no representa |
+| Las tres vías variables son puntos de la superficie, no adelgazamientos | AXIOMA | §5 |
 | El afuera (Cc) sin nombrar | PENDIENTE | §9 lo deja explícitamente abierto |
 
 La posición angular de las cuatro marcas de la cinta **en el corte** es
@@ -126,7 +126,7 @@ I—, no la latitud exacta.
 
 ## 4. La cinta S-I-Σ sobre la cara interna
 
-![La cinta sobre la cara interna](../figures/fig2_cinta_cara_interna.png)
+![La cinta sobre la cara interna]({{artifact:art_8ec235d3-1579-4447-9eed-9d12c5c3102f}})
 
 *Figura 3 — La cara interna vista desde abajo (a) y su carta desplegada `(u, v)`
 (b). Las líneas punteadas son las curvas tal como las calcula el motor.*
@@ -157,16 +157,33 @@ el agujero de la voz".
 
 ## 5. Las vías de salida y el tiempo en el cruce
 
-![Las vías de salida](../figures/fig3_vias_de_salida.png)
+![Las vías de salida]({{artifact:art_c0b988de-0dae-4bfd-94cd-a73267184359}})
 
 *Figura 4 — Las cuatro vías de salida: una fija, tres variables.*
 
 | Vía | Estatuto | Apoyo |
 |---|---|---|
-| La voz — fija, espesor cero, siempre abierta | CITA + AXIOMA | como en §3 |
+| La voz del superyó — fija, el punto singular de la superficie | CITA + AXIOMA | como en §3 |
 | Palabra deformada (*Entstellung*) | AXIOMA con apoyo freudiano | exige marca ligada a una *Wortvorstellung*: la travesía Ub→Vb de la Carta 52 |
 | *Agieren* | CITA | GW X, «Erinnern, Wiederholen und Durcharbeiten», p. 131 |
 | Sublimación | AXIOMA | sin cita puntual por ahora |
+
+> **AXIOMA — dónde vive la variabilidad de las tres vías.** Ding es una
+> superficie **sin espesor**: `V` es todo Icc y el Pcs está en otro espacio, que
+> este modelo no representa. Por lo tanto las tres vías variables **no son
+> adelgazamientos locales de una pared** —no hay pared que adelgazar—. Son
+> puntos de la superficie, y la condición de pasaje es una propiedad de la
+> **marca** (estar ligada a una *Wortvorstellung*, tener la vía representacional
+> bloqueada, admitir desplazamiento de fin), no del borde.
+>
+> El borde conserva entonces **una sola** propiedad estructural: su punto
+> singular. Eso refuerza la asimetría que el §3 necesitaba — la voz es lo único
+> que distingue a Ding como superficie; todo el resto de la diferencia entre las
+> vías está del lado de las marcas.
+>
+> *Alternativa descartada:* darle a `V` una región preconsciente de espesor
+> positivo, con adelgazamientos locales. Se descarta porque el Pcs no está en
+> `V`; lo que este modelo representa es sólo el Icc.
 
 > **AXIOMA sobre CITA.** Cada cruce es un borde de época mínimo: allí se produce
 > la fecha, no adentro. Se apoya en GW X, p. 286 —*«Auch die Zeitbeziehung ist an
@@ -180,7 +197,7 @@ el agujero de la voz".
 
 ## 6. De `V` a `S³` por pegado de Heegaard
 
-![Heegaard y no-anudamiento](../figures/fig4_heegaard_no_anudamiento.png)
+![Heegaard y no-anudamiento]({{artifact:art_47f68031-8999-4eae-be90-50a239994646}})
 
 *Figura 5 — `V`, la variedad `M`, el pegado de género 1, y por qué el toro exige
 una hipótesis que la esfera no exigía.*
@@ -216,7 +233,7 @@ un toro de revolución"— que es, además, lo que las ecuaciones paramétricas 
 
 ## 7. Los invariantes de la familia
 
-![Los invariantes](../figures/fig6_invariantes_familia.png)
+![Los invariantes]({{artifact:art_956b2d69-ba9f-4ac3-a469-d368e460983c}})
 
 *Figura 6 — La energía de flexión diverge en el límite (a); sólo la curvatura
 mínima se va al infinito (b).*
@@ -307,7 +324,7 @@ sólo porque actuaron como vivencias.** La *Nachträglichkeit* es la excepción.
 
 > **AXIOMA.** Sea `T` la marca del trauma. La alcanzabilidad no es una propiedad
 > de `T` sino del sistema de caminos, y ese sistema cambia con cada nueva
-> inscripción: en la época `n` no existe camino de `T` a la pared; en la época
+> inscripción: en la época `n` no existe camino de `T` al borde; en la época
 > `n+1`, depositada `M₂` que comparte borde con `T`, existe el camino compuesto
 > `T → M₂ → cruce`. **El punto no se mueve; el camino aparece.** Por eso lo que
 > sale por la palabra es la otra escena.
@@ -347,7 +364,7 @@ Vater geschlagen.»*
 > contraer**. *La construcción rodea lo que no puede visitar* — que es lo que
 > Freud dice que hace la construcción en análisis.
 
-![Trauma y fantasía](../figures/fig7_trauma_fantasma.png)
+![Trauma y fantasía]({{artifact:art_bf690987-0ef9-4625-8e12-8ffe2bf9979d}})
 
 *Figura 7 — El trauma es alcanzable pero no por sí mismo (a); la fantasía no es
 un punto sino un agujero (b).*
@@ -379,7 +396,7 @@ que uno sea resoluble y el otro indestructible.
 
 ## 11. La angustia en dos mecanismos
 
-![Los dos mecanismos de la angustia](../figures/fig8_angustia_dos_mecanismos.png)
+![Los dos mecanismos de la angustia]({{artifact:art_d0b82ae9-ac6c-4bab-9c22-84bab1ba53e5}})
 
 *Figura 8 — Junto al trauma la angustia es proximidad (a); junto al agujero es
 que hay que elegir un lado (b).*
@@ -467,15 +484,16 @@ de 205 inmediatamente posterior a la frase. Lo mismo con las citas 5 (entre 87 y
 89) y 7 (entre 219 y 221). Las frases alemanas están transcriptas de los
 archivos.
 
-## 14. Pendientes
+## 14. Estado de las preguntas abiertas
 
-1. **¿La pared tiene espesor?** El §5 necesita un espesor preconsciente que se
-   adelgaza localmente; el §16 sostiene que el Pcs no ocupa región propia de `V`
-   y es el estado-umbral en el instante de tocar el punto de espesor topológico
-   cero. Las Figuras 2 y 4 dibujan las dos lecturas a la vez. El parámetro `r/R`
-   sugiere leerlas como dos regímenes de la misma familia, pero `R − r` es el
-   radio del agujero central y no el espesor de la pared: la identificación hay
-   que construirla.
+1. **¿La pared tiene espesor? — CERRADO.** No. `V` es todo Icc y el Pcs está en
+   otro espacio, que este modelo no representa; Ding es una superficie sin
+   espesor y su único rasgo estructural es el punto singular. Consecuencias ya
+   aplicadas: las Figuras 2 y 4 se rehicieron sin la banda gris, y las tres vías
+   variables se reformularon como puntos de la superficie cuya condición de
+   pasaje está en la marca (§5). Queda descartada también la lectura que hacía
+   de `r/R` una interpolación entre dos regímenes del Pcs: `R − r` es el radio
+   del agujero central y no tiene nada que ver con un espesor de pared.
 2. **¿Dónde va el núcleo del trauma?** Ni el texto ni el código fijan su
    posición. Ya no es libre, sin embargo: debe existir otra marca con la que
    comparta borde, y la salida tiene que pasar por ella.

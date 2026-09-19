@@ -5,7 +5,7 @@ disciplina del resumen v7: cada elemento dibujado va marcado CITA / LECTURA /
 AXIOMA / PENDIENTE. Nada de lo que sigue reemplaza el cotejo contra el alemán o
 el francés.*
 
-Generados por [diagramas_icc.py](../diagramas_icc.py),
+Generados por [diagramas_icc.py]({{artifact:art_6b3f050a-bfd4-430e-951a-627c4c129bf0}}),
 que importa `HornTorusICC` del repo `horn-torus-icc-experimental`. Los valores
 numéricos vienen del vector SCL-90-R por defecto del motor (`GSI = 0.85`, de donde
 `a = 0.085` y `effective_a = 2.125`).
@@ -14,7 +14,7 @@ numéricos vienen del vector SCL-90-R por defecto del motor (`GSI = 0.85`, de do
 
 ## Fig. 1 — Corte axial (§4)
 
-![corte axial](../figures/fig1_corte_axial.png)
+![corte axial]({{artifact:art_71bc5e76-dd29-4a6c-80dc-d9672db09609}})
 
 | Elemento | Estatuto | Apoyo |
 |---|---|---|
@@ -24,8 +24,8 @@ numéricos vienen del vector SCL-90-R por defecto del motor (`GSI = 0.85`, de do
 | El hilo pulsional pegado al borde de I | **AXIOMA** (con CITA de apoyo) | Lacan, Sem. XI, p. 106 (*bord érogène*) funda el trayecto circular alrededor de un borde; que el borde sea el de I es aplicación propia |
 | Interior de V vacío | **AXIOMA** | §8, opción (A) |
 | Núcleo del trauma / núcleo fantasmático | **AXIOMA** | §17 |
-| Pared con espesor Pcs que se anula en la autotangencia | **AXIOMA + PENDIENTE** | §5 le da espesor; §16 dice que el Pcs no ocupa región de V. Ver "decisiones abiertas" |
-| Adelgazamientos locales | **AXIOMA** | §5 |
+| Ding sin espesor; el Pcs **no está en V** | **AXIOMA** | decisión cerrada: V es todo Icc, el Pcs está en otro espacio |
+| Las tres vías variables son puntos de la superficie | **AXIOMA** | §5; la condición de pasaje está en la marca, no en el borde |
 | "afuera: Cc (sin nombrar)" | **PENDIENTE** | §9 lo deja explícitamente sin nombre |
 
 Las marcas aparecen dos veces porque el plano corta **el mismo tubo dos veces**.
@@ -37,7 +37,7 @@ el corte es transversal a `u`, y lo que el modelo fija es el orden relativo
 
 ## Fig. 2 — La cinta sobre la cara interna (§4), y la carta desplegada
 
-![cinta sobre la cara interna](../figures/fig2_cinta_cara_interna.png)
+![cinta sobre la cara interna]({{artifact:art_8ec235d3-1579-4447-9eed-9d12c5c3102f}})
 
 **(a)** La cara interna vista desde abajo, con la mitad inferior del tubo
 removida: es la única forma de ver la cara cóncava donde el §4 pone la cinta.
@@ -65,11 +65,11 @@ Lo que la carta hace visible y el 3D no:
 
 ## Fig. 3 — Las cuatro vías de salida (§5) y el tiempo en el cruce (§9)
 
-![vías de salida](../figures/fig3_vias_de_salida.png)
+![vías de salida]({{artifact:art_c0b988de-0dae-4bfd-94cd-a73267184359}})
 
 | Vía | Estatuto | Apoyo |
 |---|---|---|
-| La voz — fija, espesor cero, siempre abierta | **CITA + AXIOMA** | como en Fig. 1 |
+| La voz del superyó — fija, punto singular | **CITA + AXIOMA** | como en Fig. 1 |
 | Palabra deformada (Entstellung) | **AXIOMA** con apoyo freudiano | exige marca ligada a una *Wortvorstellung*: la travesía Ub→Vb de la Carta 52 (CITA) |
 | Agieren | **CITA** | GW X, «Erinnern, Wiederholen und Durcharbeiten», p. 131 |
 | Sublimación | **AXIOMA** | sin cita puntual en el resumen v7 |
@@ -79,7 +79,7 @@ Lo que la carta hace visible y el 3D no:
 
 ## Fig. 4 — El §4.7 cerrado: toro sólido, Heegaard, no-anudamiento
 
-![Heegaard y no-anudamiento](../figures/fig4_heegaard_no_anudamiento.png)
+![Heegaard y no-anudamiento]({{artifact:art_47f68031-8999-4eae-be90-50a239994646}})
 
 | Paso | Estatuto |
 |---|---|
@@ -137,11 +137,9 @@ el resumen v7 afirma. Están sin resolver.
 
 ## Decisiones abiertas (para Carlos)
 
-1. **¿La pared tiene espesor?** El §5 necesita un espesor preconsciente que se
-   adelgaza localmente; el §16 dice que el Pcs no ocupa región propia de `V` y es
-   el estado-umbral en el instante de tocar el punto de espesor topológico cero.
-   Las Fig. 1 y 3 dibujan las dos lecturas a la vez. Si manda el §16, sale la
-   banda gris y las vías variables hay que representarlas de otro modo.
+1. **¿La pared tiene espesor? — CERRADO.** No: V es todo Icc y el Pcs está en
+   otro espacio. Ding no tiene espesor y las tres vías variables son puntos de
+   la superficie; la condición de pasaje está en la marca.
 2. **¿Puede la cinta pasar por `v = π`?** "Pegada a toda la cara interna" es
    incompatible con "no pasa por la voz", porque en un horn torus `v = π` es un
    punto y no un paralelo. O la cinta lo atraviesa (y entonces la voz no es
